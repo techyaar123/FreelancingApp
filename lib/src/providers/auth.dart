@@ -42,7 +42,26 @@ class Auth extends ChangeNotifier {
 
       return true;
     } on FirebaseAuthException catch (error) {
-      print(error);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(error.toString()),
+                SizedBox(
+                  height: 10,
+                ),
+                TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text('Close'))
+              ],
+            ),
+          );
+        },
+      );
       return false;
     } catch (e) {
       _appState = AppState.unauthenticated;
