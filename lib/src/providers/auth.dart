@@ -1,4 +1,3 @@
-import 'package:employmentappproject/src/screens/UserEditProfile.dart';
 import 'package:employmentappproject/src/screens/home.dart';
 import 'package:employmentappproject/src/screens/verify.dart';
 
@@ -23,6 +22,7 @@ class Auth extends ChangeNotifier {
         _appState = AppState.unauthenticated;
       } else {
         _user = firebaseUser;
+        Future.delayed(Duration(seconds: 5));
         _appState = AppState.authenticated;
       }
       notifyListeners();
@@ -41,6 +41,9 @@ class Auth extends ChangeNotifier {
       }
 
       return true;
+    } on FirebaseAuthException catch (error) {
+      print(error);
+      return false;
     } catch (e) {
       _appState = AppState.unauthenticated;
       notifyListeners();

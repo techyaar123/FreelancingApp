@@ -31,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authState = Provider.of<Auth>(context, listen: false);
     return SafeArea(
       child: Scaffold(
         key: _key,
@@ -204,13 +205,20 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             child: Center(
                               child: TextButton(
-                                child: Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                child: (authState.appState !=
+                                            AppState.authenticated &&
+                                        authState.appState ==
+                                            AppState.authenticating)
+                                    ? Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    : Text(
+                                        'Login',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                 onPressed: () async {
                                   if (!await Provider.of<Auth>(context,
                                           listen: false)

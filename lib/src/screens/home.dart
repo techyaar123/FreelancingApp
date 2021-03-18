@@ -1,7 +1,6 @@
 import 'package:employmentappproject/src/providers/auth.dart';
 import 'package:employmentappproject/src/screens/UserEditProfile.dart';
 import 'package:employmentappproject/src/screens/ViewAllJobs.dart';
-import 'package:employmentappproject/src/screens/dummy_screen.dart';
 
 import 'package:employmentappproject/src/screens/login.dart';
 import 'package:employmentappproject/src/screens/main_drawer.dart';
